@@ -104,9 +104,68 @@ Objetivo: encontrar e ler um arquivo em subdiretórios de `inhere` que seja leg�
 - `exit`: fecha a conexão atual (SSH ou terminal)
 - `pwd`: mostra a pasta em que estou
 - `cd inhere`: navega para o diretório `inhere`
-- `find . -type f -size 1033c ! -executable -exec file {} +`: busca arquivos com 1033 bytes, não executáveis, e verifica o tipo de cada um[cite: 8]
-- `cat ./maybehere07/.file2`: mostra o conteúdo do arquivo correto de texto ASCII[cite: 8]
+- `find . -type f -size 1033c ! -executable -exec file {} +`: busca arquivos com 1033 bytes, não executáveis, e verifica o tipo de cada um
+- `cat ./maybehere07/.file2`: mostra o conteúdo do arquivo correto de texto ASCII
 
 O que deu errado: ao tentar buscar arquivos inicialmente, acabei caindo em um arquivo que gerou um texto gigantesco na tela e a senha não funcionou, pois era apenas um texto com linhas muito longas e não a credencial correta.
 
-O que aprendi: o comando `find` combinado com `-size 1033c`, `! -executable` e `-exec file {} +` permite filtrar perfeitamente o arquivo exato que procuramos entre dezenas de subpastas[cite: 8].
+O que aprendi: o comando `find` combinado com `-size 1033c`, `! -executable` e `-exec file {} +` permite filtrar perfeitamente o arquivo exato que procuramos entre dezenas de subpastas.
+
+## Bandit 6 → 7
+
+Objetivo: encontrar um arquivo armazenado em algum lugar do servidor que pertença ao usuário `bandit7`, ao grupo `bandit6` e tenha exatamente 33 bytes de tamanho.
+
+- `exit`: fecha a conexão atual (SSH ou terminal)
+- `find / -user bandit7 -group bandit6 -size 33c 2>/dev/null`: busca em todo o sistema de arquivos pelo arquivo com 33 bytes, pertencente ao usuário `bandit7` e grupo `bandit6`, ocultando erros de permissão
+- `cat <caminho_do_arquivo>`: mostra o conteúdo do arquivo correto para obter a senha do próximo nível
+
+O que deu errado: ao executar o comando no terminal, a falta de atenção na sintaxe dos parâmetros ou tentar ler o arquivo antes de filtrar corretamente gerou erro de sintaxe e de leitura no `cat`.
+
+O que aprendi: o comando `find /` combinado com `-user bandit7`, `-group bandit6` e `-size 33c` permite rastrear todo o sistema de arquivos da raiz até encontrar o arquivo correto que atende a todos os critérios simultaneamente.
+
+## Bandit 7 → 8
+
+Objetivo: encontrar a senha para o próximo nível armazenada no arquivo `data.txt` ao lado da palavra `millionth`.
+
+- `exit`: fecha a conexão atual (SSH ou terminal)
+- `ls`: lista os arquivos do diretório atual para confirmar a presença do `data.txt`
+- `cat data.txt | grep millionth`: lê o conteúdo do arquivo e filtra usando o pipe (`|`) e o `grep` para exibir apenas a linha que contém a palavra "millionth"
+- `grep millionth data.txt`: forma direta de buscar a palavra "millionth" dentro do arquivo `data.txt`
+
+O que deu errado: tentar ler o arquivo `data.txt` inteiro sem filtrar com o `grep` resulta em milhares de linhas de texto na tela, tornando impossível localizar a senha manualmente.
+
+O que aprendi: o uso do operador pipe (`|`) combinado com o `grep` (ou passando o arquivo direto para o `grep`) permite pesquisar e filtrar strings específicas dentro de arquivos extensos rapidamente.
+
+## Bandit 8 → 9
+
+Objetivo: encontrar a única linha de texto no arquivo `data.txt` que ocorre apenas uma vez.
+
+- `exit`: fecha a conexão atual (SSH ou terminal)
+- `sort data.txt | uniq -u`: ordena o arquivo alfabeticamente para agrupar as linhas duplicadas e filtra com `uniq -u` para exibir apenas a linha que não se repete
+
+O que deu errado: usar apenas o comando `uniq -u` sem ordenar o arquivo antes não funciona, pois o `uniq` só identifica linhas duplicadas se elas estiverem adjacentes (uma ao lado da outra).
+
+O que aprendi: o comando `uniq` requer que a entrada esteja previamente ordenada com o `sort` para detectar duplicatas corretamente, e a flag `-u` isola exclusivamente o elemento único do arquivo.
+
+## Bandit 9 → 10
+
+Objetivo: encontrar a senha para o próximo nível armazenada no arquivo `data.txt` como uma das poucas sequências legíveis por humanos (*human-readable*), precedida por vários caracteres `=`.
+
+- `exit`: fecha a conexão atual (SSH ou terminal)
+- `strings data.txt | grep "="`: extrai todas as cadeias de texto legíveis do arquivo binário `data.txt` e filtra com o `grep` para exibir apenas as linhas que contêm o caractere `=`
+
+O que deu errado: tentar ler o arquivo `data.txt` diretamente com o comando `cat` exibe caracteres binários e desconfigura o terminal, pois o arquivo não é um texto simples.
+
+O que aprendi: o comando `strings` é essencial para extrair texto legível contido dentro de arquivos binários ou de dados brutos, e a combinação com o `grep` permite localizar rapidamente a chave correta baseada no padrão de caracteres.
+
+## Bandit 10 → 11
+
+Objetivo: decodificar os dados codificados em Base64 armazenados no arquivo `data.txt` para descobrir a senha do próximo nível.
+
+- `exit`: fecha a conexão atual (SSH ou terminal)
+- `base64 -d data.txt`: lê diretamente o arquivo codificado em Base64 e aplica a descodificação para revelar o texto original
+- `cat data.txt | base64 -d`: lê o conteúdo do arquivo com o `cat` e envia o fluxo através de um pipe para o comando `base64 -d` executar a descodificação
+
+O que deu errado: tentar ler o arquivo `data.txt` com o `cat` sem decodificar mostrava apenas strings corrompidas e ilegíveis cheias de caracteres estranhos.
+
+O que aprendi: o comando `base64` com a flag `-d` (*decode*) permite reverter o formato de codificação Base64 de volta para texto plano legível.
