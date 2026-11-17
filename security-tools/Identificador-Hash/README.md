@@ -40,10 +40,14 @@ Construído com base em fundamentos de segurança da informação, inspeção de
 No terminal (PowerShell, Bash ou CMD), navegue até a pasta do projeto e execute:
 
 ```bash
-python identificador-hash.py
+python identificador-hash-V2.0.py
 ```
 
 ---
+
+## Interpretação dos resultados
+
+Comprimentos de hash não são exclusivos. Correspondências baseadas apenas no tamanho são possibilidades, não uma identificação definitiva.
 
 ## 🧪 Exemplos de Uso
 
