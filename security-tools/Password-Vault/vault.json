@@ -1,0 +1,8 @@
+{
+    "version": 1,
+    "algorithm": "AES-256-GCM",
+    "kdf": "Argon2id",
+    "salt": "RaZEfR0O7kioyvHO8HdZGQ==",
+    "nonce": "X2B7w7bglgU9AZVa",
+    "ciphertext": "39+4KXXR4aoJgl8cn0i/zy8t1ZlCJyyEdNhwKt/VGqQDN85hkcCNnRoC+LTvl/ZPPOFk72B7myGD2bpKd58GPV+jyxTs6KHS2+PphgWO"
+}
