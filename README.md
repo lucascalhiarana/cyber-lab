@@ -1,38 +1,68 @@
 # Cybersecurity Lab
 
-A personal learning repository documenting my transition into Information Technology and my ongoing cybersecurity studies. My current goal is to build experience in entry-level IT support and operations, with a longer-term focus on defensive security, especially Blue Team and Security Operations Center (SOC) work.
+A personal learning repository documenting my transition into Information Technology and my ongoing cybersecurity journey.
 
-The projects below are educational exercises and personal tools. They reflect what I have practiced and documented so far.
+My current goal is to develop practical IT skills and gain experience in entry-level IT support and operations, with a long-term focus on defensive security, particularly Blue Team and Security Operations Center (SOC) operations.
 
-## Featured projects
+This repository contains hands-on exercises, technical notes, educational projects, and documentation of my continuous learning process.
 
-- [Linux Users, Groups, and Permissions Lab](./linux/labs/users-and-permissions.md) — practice with Linux accounts, groups, file permissions, SGID, and troubleshooting access behavior.
+## Featured Projects
+
+### Linux
+
+- [Linux Users, Groups, and Permissions Lab](./linux/labs/users-and-permissions.md) — practical exercises involving Linux accounts, groups, file permissions, SGID, and troubleshooting.
+- [Linux Logs and System Monitoring Lab](./linux/labs/linux-logs-and-monitoring.md) — system log analysis, SSH authentication events, journalctl filtering, and real-time monitoring.
+- [Linux Command Cheatsheet](./linux/cheatsheets/commands.md) — categorized Linux commands and practical references.
+
+### Security Tools
+
 - [HeaderGuard](./security-tools/Header-Guard/README.md) — a Python command-line project that checks six HTTP security headers and provides heuristic findings and recommendations.
 - [Hash Identifier](./security-tools/Identificador-Hash/README.md) — an educational tool that suggests possible hash formats from recognizable prefixes and string lengths. Length-based matches are candidates, since different algorithms can share the same length.
-- [Controlled Authentication Testing Lab](./simulacao-ataques-forca-bruta-dio/README.md) — authentication testing exercises in an isolated VirtualBox lab with Kali Linux and Metasploitable 2. The repository also includes [mitigation notes](./simulacao-ataques-forca-bruta-dio/mitigacao.md).
-- [ICMP and Wireshark Notes](./networking/redesnotas.md) — notes on ICMP, ping, tracert, and packet inspection in Wireshark.
 
-## Repository structure
+### Networking and Security Labs
+
+- [Controlled Authentication Testing Lab](./simulacao-ataques-forca-bruta-dio/README.md) — authentication testing exercises in an isolated VirtualBox lab with Kali Linux and Metasploitable 2. The repository also includes [mitigation notes](./simulacao-ataques-forca-bruta-dio/mitigacao.md).
+- [ICMP and Wireshark Notes](./networking/redesnotas.md) — notes on ICMP, ping, tracert, and packet inspection using Wireshark.
+
+## Repository Structure
 
 | Folder | Contents |
-| --- | --- |
-| [linux/](./linux/) | Linux notes, a users-and-permissions lab, and a command reference |
-| [networking/](./networking/) | Networking notes and ICMP practice |
-| [python/](./python/) | Python practice scripts and learning projects |
-| [security-tools/](./security-tools/) | HeaderGuard and Hash Identifier |
-| [simulacao-ataques-forca-bruta-dio/](./simulacao-ataques-forca-bruta-dio/) | Controlled authentication lab and defensive mitigation notes |
+|---|---|
+| [linux/](./linux/) | Linux fundamentals, command references, and practical labs |
+| [networking/](./networking/) | Networking notes and ICMP exercises |
+| [python/](./python/) | Python exercises and learning projects |
+| [security-tools/](./security-tools/) | Python-based security tools and educational projects |
+| [simulacao-ataques-forca-bruta-dio/](./simulacao-ataques-forca-bruta-dio/) | Controlled authentication testing and defensive mitigation exercises |
 
-## Topics and tools
+## Technical Skills and Learning Areas
 
-My current studies include Linux fundamentals, networking, Python, and cybersecurity foundations. Documented labs use tools such as VirtualBox, Wireshark, Nmap, Hydra, Medusa, and enum4linux in the context of specific exercises.
+My current studies and practical exercises include:
 
-Future study areas include log analysis, SIEM platforms, and the MITRE ATT&CK framework.
+- **Linux:** command-line operations, users, groups, permissions, and system monitoring.
+- **Networking:** networking fundamentals, ICMP, and packet analysis.
+- **Python:** programming fundamentals and educational security tools.
+- **Cybersecurity:** security fundamentals, authentication concepts, and defensive security practices.
+- **Log Analysis:** systemd journal, SSH authentication events, and basic event investigation.
+- **Tools:** VirtualBox, Wireshark, Nmap, Hydra, Medusa, and enum4linux, used in specific educational lab exercises.
 
-## Responsible use
+## Future Learning Goals
 
-Security testing in this repository is intended for isolated labs and systems where I have explicit authorization. The examples are provided for educational purposes.
+My next learning objectives include:
+
+- Advanced Linux administration and permissions.
+- Security log analysis and incident investigation.
+- SIEM platforms such as Wazuh, Splunk, and Microsoft Sentinel.
+- Blue Team tools and defensive security labs.
+- MITRE ATT&CK framework.
+- Further development of Python automation projects.
+
+## Responsible Use
+
+Security testing documented in this repository is intended for isolated lab environments and systems where I have explicit authorization.
+
+All projects and exercises are provided for educational purposes.
 
 ## Connect
 
 - [LinkedIn](https://www.linkedin.com/in/lucascalhiarana/)
-- [GitHub profile](https://github.com/lucascalhiarana)
+- [GitHub Profile](https://github.com/lucascalhiarana)
